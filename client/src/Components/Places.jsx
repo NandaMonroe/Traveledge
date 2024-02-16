@@ -1,53 +1,93 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { Box, Rating } from '@mui/material';
+import * as React from "react";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Box, Grid, Rating } from "@mui/material";
 
+const Places = ({ query }) => {
+  const [placeList, setPlaceList] = useState([]);
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/places")
+      .then((res) => {
+        console.log(res.data);
+        setPlaceList(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-const Places = () => {
-    return (
-        <Box flex={6}>
-            <Container sx={{ py: 8 }}>
-                    {/* End hero unit */}
-                    <Grid container spacing={4}>
-                    {cards.map((card) => (
-                        <Grid item key={card} xs={12} sm={6} md={3}>
-                        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                            <CardMedia
+  return (
+    <Box flex={6}>
+      <Container sx={{ py: 10 }}>
+        <Grid container spacing={3}>
+            {
+                placeList.filter((place) => place.country.toLowerCase().includes(query)).map((place) => {
+                    return (
+                        <Grid item sm={3} key={place._id}>
+                        <Card sx={{ borderRadius: "20px" }}>
+                        <CardMedia
                             component="div"
-                            sx={{
-                                // 3:2
-                                pt: '80%',
-                            }}
-                            image="https://source.unsplash.com/random?wallpapers"
+                            sx={{ pt: "80%" }}
+                            image={place.image}
+                        />
+                        <CardContent>
+                            <Typography
+                            gutterBottom
+                            variant="h5"
+                            fontWeight="bold"
+                            component="h2"
+                            >
+                            {place.city},
+                            </Typography>
+                            <Typography
+                            gutterBottom
+                            variant="h5"
+                            fontWeight="bold"
+                            component="h2"
+                            >
+                            {place.country}
+                            </Typography>
+                            <Typography gutterBottom variant="h6">
+                            Budget ${place.budget}/person/day
+                            </Typography>
+                            <Box display="flex">
+                            <Typography gutterBottom variant="p">
+                                Rating:
+                            </Typography>
+                            <Rating
+                                name="read-only"
+                                readOnly
+                                value={place.rating}
                             />
-                            <CardContent sx={{ flexGrow: 1 }}>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Heading
-                            </Typography>
-                            <Typography>
-                                Budget $/day
-                            </Typography>
-                            </CardContent>
-                            <CardActions>
-                            <Rating name="read-only" readOnly/>
-                            <Button size="small" color="success" edge="end">View</Button>
-                            </CardActions>
+                            </Box>
+                        </CardContent>
+                        <CardActions>
+                            <Button
+                            variant="contained"
+                            size="small"
+                            color="success"
+                            href={`/places/view/${place._id}`}
+                            >
+                            View
+                            </Button>
+                        </CardActions>
                         </Card>
-                        </Grid>
-                    ))}
-                    </Grid>
-            </Container>
-        </Box>
-    )
-}
+          </Grid>
+                    );
+                    }
+                )
+            }
+        </Grid>
+      </Container>
+    </Box>
+  );
+};
 
-export default Places
+export default Places;

@@ -1,14 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto&family=Varela+Round&display=swap');
+
 #root {
-  width: 100vw;
-  margin: 0;
-  text-align: center;
-}
-
-body {
-  margin: 0;
-}
-
-
-.read-the-docs {
-  color: #888;
+    font-family: 'Raleway', sans-serif;;
 }

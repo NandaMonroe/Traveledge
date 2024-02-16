@@ -4,9 +4,9 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import Button from '@mui/material/Button';
+import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
-import { AppBar, Checkbox, Container, FormControl, FormControlLabel, FormGroup, FormHelperText, Grid, IconButton, Input, InputLabel, MenuItem, Rating, Select, TextField, Toolbar, Typography } from '@mui/material';
-import NavBar from './NavBar';
+import { AppBar, Box, Checkbox, Container, FormControl, FormControlLabel, FormGroup, FormHelperText, Grid, IconButton, Input, InputLabel, MenuItem, Rating, Select, TextField, Toolbar, Typography } from '@mui/material';
 
 
 const StyledForm = styled(FormGroup)({
@@ -57,7 +57,7 @@ const AddPlace = () => {
   const [isLgbt, setIsLgbt] = useState(false);
   const [isTransportation, setIsTransportation] = useState(false);
   const [description, setDescription] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(0);
   const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
@@ -94,15 +94,47 @@ const AddPlace = () => {
   return (
     <>
       <CssBaseline />
-      <NavBar/>
-      <form onSubmit={handleSubmit}>
+      <AppBar position="sticky">
+            <StyledToolbar>
+            <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 2 }}
+                >
+                <MenuIcon sx={{ display: { xs: 'block', sm: 'none' } }}/>
+            </IconButton>
+            <a href="/places" style={{ textDecoration: "none", color: "white"}}><Typography
+                href="/places"
+                variant="h3"
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+                Traveledge
+            </Typography></a>
+            <Box sx={{ flexGrow: 1 }} />
+              <Box sx={{ display: 'flex' , gap: '10px', alignItems: 'center' }}>
+                  <Typography
+                  variant="p"
+                  noWrap
+                  component="div"
+                  sx={{ display: { xs: 'block', sm: 'none' } }}
+                  >
+                  Traveledge
+                  </Typography>
+              </Box>
+            </StyledToolbar>
+      </AppBar>
 
+      <form onSubmit={handleSubmit}>
       <StyledForm>
         <Typography variant='h4' marginBottom='20px' fontWeight='bold' color='primary'>
           Add a new Place
         </Typography>
-        <Grid container >
-          <Grid item sm={6} paddingRight={'150px'}>
+        <Grid container spacing={5}>
+          <Grid item sm={6}>
             <StyledTextInput
               variant="standard"
               label="City"
@@ -120,12 +152,12 @@ const AddPlace = () => {
               onChange={(e) => setContinent(e.target.value)}/>
             <StyledTextInput
               variant="standard"
-              label="What is the average daily expenses for one person?"
+              label="What are the average daily expenses?"
               value={budget}
               onChange={(e) => setBudget(e.target.value)}/>
             <StyledTextInput
               variant="standard"
-              label="When is the best time to visit it?"
+              label="When is the best time to visit?"
               value={month}
               onChange={(e) => setMonth(e.target.value)}/>
             <StyledTextInput
@@ -135,12 +167,12 @@ const AddPlace = () => {
               onChange={(e) => setWeather(e.target.value)}/>
             <StyledTextInput
               variant="standard"
-              label="What type of food are there?"
+              label="What types of food are available?"
               value={food}
               onChange={(e) => setFood(e.target.value)}/>
             <StyledTextInput
               variant="standard"
-              label="What are the activities people can do there?"
+              label="What are the activities that people can do?"
               value={activity}
               onChange={(e) => setActivity(e.target.value)}/>
           </Grid>
@@ -164,7 +196,7 @@ const AddPlace = () => {
               <FormControlLabel  label="Is it LGBT friendly?" control={<Checkbox checked={isLgbt} onChange={(e) => setIsLgbt(e.target.checked)}/>}/>
               <StyledTextInput
               variant="standard"
-              label="Write a small description for it:"
+              label="Write a small description about this destination:"
               value={description}
               onChange={(e) => setDescription(e.target.value)}/>
             </FormControl>
@@ -175,7 +207,7 @@ const AddPlace = () => {
             />
             <StyledTextInput
               variant="standard"
-              label="Please, provide a URL image of this place (jpg)"
+              label="Please, provide a URL image of this destination (jpg)"
               value={image}
               onChange={(e) => setImage(e.target.value)}/>
           </Grid>
@@ -184,38 +216,7 @@ const AddPlace = () => {
       </StyledForm>
       </form>
 
-      {/* <AppBar position="sticky">
-            <StyledToolbar>
-            <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-                >
-                <MenuIcon sx={{ display: { xs: 'block', sm: 'none' } }}/>
-            </IconButton>
-            <Typography
-                variant="h4"
-                noWrap
-                component="div"
-                sx={{ display: { xs: 'none', sm: 'block' } }}
-            >
-                Traveledge
-            </Typography>
-            <Box sx={{ flexGrow: 1 }} />
-              <Box sx={{ display: 'flex' , gap: '10px', alignItems: 'center' }}>
-                  <Typography
-                  variant="p"
-                  noWrap
-                  component="div"
-                  sx={{ display: { xs: 'block', sm: 'none' } }}
-                  >
-                  Traveledge
-                  </Typography>
-              </Box>
-            </StyledToolbar>
-        </AppBar> */}
+      
 
         {/* <form onSubmit={handleSubmit}>
             <div>

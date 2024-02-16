@@ -7,16 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Icon, Button, Fab } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+
 
 const StyledToolbar = styled(Toolbar)({
     display:"flex",
@@ -64,7 +57,8 @@ color: 'inherit',
 }));
 
 
-const NavBar = () => {
+const NavBar = ({setQuery}) => {
+
 
     return (
         <AppBar position="sticky">
@@ -78,21 +72,23 @@ const NavBar = () => {
             >
                 <MenuIcon sx={{ display: { xs: 'block', sm: 'none' } }}/>
             </IconButton>
-            <Typography
-                variant="h4"
+            <a href="/places" style={{ textDecoration: "none", color: "white"}}><Typography
+                href="/places"
+                variant="h3"
                 noWrap
                 component="div"
                 sx={{ display: { xs: 'none', sm: 'block' } }}
             >
                 Traveledge
-            </Typography>
+            </Typography></a>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
-                placeholder="Search a country…"
                 inputProps={{ 'aria-label': 'search' }}
+                placeholder="Search a country…"
+                onChange={(e) => setQuery((e.target.value).toLowerCase())}
                 />
             </Search>
             <Box sx={{ flexGrow: 1 }} />

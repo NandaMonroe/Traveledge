@@ -7,7 +7,6 @@ const Place = require("../models/traveledge.model");
 module.exports.readAll = (req, res) => {
     Place.find()
         .then(allPlaces => {
-            console.log(allPlaces);
             // this is what REACT will receive in res.data
             res.json(allPlaces);
         })

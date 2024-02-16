@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Rating, Slider, Typography } from '@mui/material';
 
 const RadioFilter = styled(Box)({
@@ -11,7 +11,8 @@ const RadioFilter = styled(Box)({
 
 
 
-const SideBar = () => {
+const SideBar = ({handleChange}) => {
+
   return (
     <Box flex={1} sx={{ display: { xs: "none", sm: "block" } }} p="30px">
         <Box postion="fixed" >
@@ -22,20 +23,19 @@ const SideBar = () => {
             <RadioFilter>
                 <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">Continent</FormLabel>
-                    <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="All"
-                    name="radio-buttons-group"
-                    sx={{marginLeft: '20px'}}
+                    <RadioGroup sx={{marginLeft: '20px'}}
+                        aria-labelledby="demo-controlled-radio-buttons-group"
+                        name="controlled-radio-buttons-group"
+                        onChange={handleChange}
                     >
-                        <FormControlLabel value="All" control={<Radio />} label="All" />
-                        <FormControlLabel value="Africa" control={<Radio />} label="Africa" />
-                        <FormControlLabel value="Antartic" control={<Radio />} label="Antartic" />
-                        <FormControlLabel value="Asia" control={<Radio />} label="Asia" />
-                        <FormControlLabel value="Central America" control={<Radio />} label="Central America" />
-                        <FormControlLabel value="Europe" control={<Radio />} label="Europe" />
-                        <FormControlLabel value="North America" control={<Radio />} label="North America" />
-                        <FormControlLabel value="South America" control={<Radio />} label="South America" />
+                        <FormControlLabel value="All" control={<Radio size='small'/>} label="All" />
+                        <FormControlLabel value="Africa" control={<Radio size='small' />} label="Africa" />
+                        <FormControlLabel value="Asia" control={<Radio size='small' />} label="Asia" />
+                        <FormControlLabel value="Central America" control={<Radio size='small' />} label="Central America" />
+                        <FormControlLabel value="Europe" control={<Radio size='small' />} label="Europe" />
+                        <FormControlLabel value="Oceania" control={<Radio size='small' />} label="Oceania" />
+                        <FormControlLabel value="North America" control={<Radio size='small' />} label="North America" />
+                        <FormControlLabel value="South America" control={<Radio size='small' />} label="South America" />
                     </RadioGroup>
                 </FormControl>
             </RadioFilter>
@@ -43,17 +43,17 @@ const SideBar = () => {
             <RadioFilter>
                 <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
-                    <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="All"
-                    name="radio-buttons-group"
-                    sx={{marginLeft: '20px'}}
+                    <RadioGroup sx={{marginLeft: '20px'}}
+                        aria-labelledby="demo-controlled-radio-buttons-group"
+                        name="controlled-radio-buttons-group"
+                        
+                        onChange={handleChange}
                     >
-                        <FormControlLabel value="All" control={<Radio />} label="All"/>
-                        <FormControlLabel value="City" control={<Radio />} label="City" />
-                        <FormControlLabel value="Beach" control={<Radio />} label="Beach" />
-                        <FormControlLabel value="Desert" control={<Radio />} label="Desert" />
-                        <FormControlLabel value="Mountain" control={<Radio />} label="Mountain" />
+                        <FormControlLabel value="All" control={<Radio size='small' />} label="All"/>
+                        <FormControlLabel value="City" control={<Radio size='small' />} label="City" />
+                        <FormControlLabel value="Beach" control={<Radio size='small' />} label="Beach" />
+                        <FormControlLabel value="Desert" control={<Radio size='small' />} label="Desert" />
+                        <FormControlLabel value="Mountain" control={<Radio size='small' />} label="Mountain" />
 
                     </RadioGroup>
                 </FormControl>
