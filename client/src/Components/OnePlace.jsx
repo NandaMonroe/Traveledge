@@ -12,7 +12,7 @@ const OnePlace = () => {
   const [onePlace, setOnePlace] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/places/view/" + id)
+    axios.get("https://traveledge.onrender.com/api/places/view/" + id)
         .then(res => {
             console.log(res.data);
             setOnePlace(res.data);

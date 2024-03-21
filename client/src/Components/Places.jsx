@@ -15,7 +15,7 @@ const Places = ({ query }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/places")
+      .get("https://traveledge.onrender.com/api/places")
       .then((res) => {
         console.log(res.data);
         setPlaceList(res.data);

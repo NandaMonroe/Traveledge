@@ -70,7 +70,7 @@ const AddPlace = () => {
           image, city, country, continent, budget, month, weather, food, activity, type, isSafe, isHealth, isFamily, isLgbt, isTransportation, description, rating
       };
 
-      axios.post('http://localhost:8000/api/places', postObject)
+      axios.post('https://traveledge.onrender.com/api/places', postObject)
           .then((response) => {
               console.log(response.data)
               navigate("/places")
