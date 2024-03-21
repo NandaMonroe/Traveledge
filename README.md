@@ -86,7 +86,7 @@ $ cd traveledge
 $ npm install
 
 # Run the app
-$ npm start
+$ npm run dev
 ```
 
 > **Note**
