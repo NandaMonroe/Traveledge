@@ -13,8 +13,6 @@ const port = process.env.PORT;
 require("./config/mongoose.config");
 
 // require the routes at the end to run
-// const movieRoutes = require("./routes/movie.routes");
-// movieRoutes(app);
 require("./routes/traveledge.routes")(app)
 
 
